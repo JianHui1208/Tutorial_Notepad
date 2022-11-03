@@ -1,0 +1,37 @@
+Frist Time
+composer global require laravel/installer
+composer create-project --prefer-dist laravel/laravel 'project name'
+cd 'project name'
+composer require laravel/ui
+php artisan ui vue --auth
+npm install
+npm run dev
+php artisan migrate
+
+//update commed
+npm install -g npm
+composer update
+
+//Create Model
+php artisan make:model 'Model Name' -m
+(-m = migration table)
+
+//Create Controller
+php artisan make:controller 'Controller Name'
+php artisan make:controller 'Controller Name' --resource
+
+php artisan migrate:fresh
+php artisan migrate:refresh
+
+ReadMe.md
+
+## How to use
+
+- Clone the repository with __git clone__
+- Copy __.env.example__ file to __.env__ and edit database credentials there
+- Run __composer install__
+- Run __php artisan key:generate__
+- Run __php artisan migrate --seed__ (it has some seeded data for your testing)
+- That's it: launch the main URL and login with credentials __admin@admin.com__ - __password__ 
+
+---

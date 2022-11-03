@@ -1,0 +1,309 @@
+当我们创建好了虚拟机后，打开命令行。输入以下命令
+
+ssh -i ~path/vm-machine-tutorial_key.pem azureuser@4.196.248.194 (后面是你的IP)
+
+Path Example = C:/Users/user/Desktop/vm-server.pem
+
+需要跟着你的pem文件的位置
+第一次打会出现这个 写下yes
+成功了就会进到这个界面
+
+ok 现在就开始build server
+
+该教学是使用Laravel进行
+
+--------------------------------
+
+在开始build之前 我们先学会几个Linux指令
+
+检查文件夹
+ls -l 查看当前文件夹里的文件 不包括隐藏文件，.开始的文件 (例如.git, .env等等)
+ls -a 查看当前文件夹里的文件 包括隐藏文件，.开始的文件
+
+复制文件
+cp 文件名称 复制的目标名称
+
+删除文件
+rm 文件名称
+
+清除当前指令界面
+clear
+
+修改文件
+nano 文件名称
+
+查看文件
+cat 文件名称
+
+-----------------------------
+
+首先我们先进入管理员身份
+sudo su
+
+-----------------------
+
+接下来我们更新伺服器文件
+sudo apt update
+
+-------------------
+
+接下来我们安装Ngnix
+Ngnix是异步框架的网页服务器。里面包含了Apache、lighttpd等等。
+会问你是否安装 输入 Y
+sudo apt install nginx
+
+你可以通过这个四个指令 对Nginx进行操作
+sudo systemctl stop nginx (停止Nginx)
+sudo systemctl start nginx (开始Nginx)
+sudo systemctl status nginx (检查Nginx状况)
+sudo systemctl reload nginx (重新启动Nginx)
+
+可以透过以下指令，查看nginx是否安装完成
+nginx -v
+
+-------------------
+
+接下来我们安装git
+程序员必备
+sudo apt install git
+
+可以透过以下指令，查看git是否安装完成
+git --version
+
+-------------------
+
+接下来我们安装php和composer包
+sudo apt -y install php7.4
+
+输入完这个你可能看到红色错误 但是可以不必理会它
+
+sudo apt-get install -y php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php-cli unzip
+
+以上是安装php extension
+
+sudo apt install php-fpm
+
+以上是server配置extension (不确定)
+
+-------------------
+
+安装Composer
+跟着以下的指令
+
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
+HASH=`curl -sS https://composer.github.io/installer.sig`
+
+php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+
+安装完成
+
+这句是为了让composer能够全局使用，包括管理员
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+可以透过以下指令，查看composer是否安装完成
+composer --version
+
+-------------------
+
+安装MySQL
+sudo apt install mysql-server
+
+-------------------
+
+到这里为止我们完成了80%
+
+让我们来重新reload ngnix和更新伺服器文件
+使用以下指令
+sudo systemctl reload nginx
+sudo apt update
+
+-------------------
+
+接下来我们用git复制一个项目来到伺服器
+位置可以在任何地方 但是必须记得文件的位置
+我这里使用我自己的Laravel项目
+git clone https://github.com/JianHui1208/Laravel-Project-Modules.git
+cd Laravel-Project-Modules
+
+-------------------
+
+这里我们就进行Laravel的配置
+复制一个env文件
+cp .env.example .env
+nano .env
+在env里面 我们会设置
+数据库名称
+数据库用户名称 
+数据库用户密码
+网站URL (把伺服器的IP放到APP_URL)
+
+接下来我们输入以下指令
+
+composer install
+php artisan key:generate
+
+-------------------
+
+因为我们现在没有创建数据库 所以不可以进行php artisan migrate
+接下来我们创建数据库
+
+在同样的地方输入
+mysql
+
+就会进入到mysql的server 我们会使用sql来进行创建用户和数据库
+CREATE USER 'user1'@'%' IDENTIFIED BY 'aaa1234zzz.'; (创建用户)
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%'; (给予用户权限)
+
+user1是刚刚设定在.env的DB_USERNAME
+aaa1234zzz.是刚刚设定在.env的DB_PASSWORD
+
+你可以设定任何你想要的名字和密码
+
+接下来我们先输入quit 退出mysql server
+
+我们使用以下指令使用user1的身份进入mysql server
+mysql -u user1 -p
+会要求我们输入密码 刚刚在创建用户时设定的密码
+
+当你输入密码完成后 就会以user1的身份进入mysql server
+
+我们需要使用一个正确的DB_USER来创建数据库 不可以使用root
+-------------------
+
+现在我们创建数据库
+
+CREATE DATABASE tutorial_database;
+
+mysql最重要的就是 ； 
+要小心
+
+创建好了我们就可以quit
+
+-------------------
+
+接下来我们就可以php artisan migrate --seed
+
+-------------------
+
+接下来就到最麻烦的地方
+我们使用我们的IP在浏览器上看 会显示Apache的defualt界面。如果没有，可以试着reload nginx。
+
+-------------------
+
+接下来我们去到文件夹的最前端
+cd /
+
+进入nginx的文件夹里
+cd etc/nginx
+
+我们可以使用
+ls -l
+
+来查看文件夹里面的文件。在这里我们主要的文件是sites-available和sites-enabled
+
+-------------------
+
+在sites-available里面，有一个文件是叫default。这个文件是网站伺服器配置文件。他是一个例子，让你来复制新的一个文件来更改你想要的网站配置。
+sites-enabled则是指向站点可用文件夹中文件的符号链接。
+
+-------------------
+
+接下来我们可以进入到sites-available的文件夹里复制一个default的文件
+cp default tutorial(任何名字都可以)
+
+-------------------
+
+接下来我们进入到你复制出来的文件里
+nano tutorial
+
+-------------------
+
+接下来我们跟着顺序一步一步来
+在这里我们用滑鼠是没有用的 我们需要使用方向键来控制
+
+我们来到以下的位置
+root /var/www/html;
+
+把他修改成Laravel文件的路径，记得需要在后面加一个public
+root /home/azureuser/Laravel-Project-Modules/public;
+
+-------------------
+
+接下来往下三行，来到
+index index.html index.htm index.nginx-debian.html;
+
+在;的前面加上index.php，变成
+index index.html index.htm index.nginx-debian.html index.php;
+
+-------------------
+
+接下来往下两行，来到
+server_name _;
+
+我们把我们的IP地址写进去。两次，不同的写法
+server_name 4.196.248.194 http://4.196.248.194/;
+
+-------------------
+
+接下来我们来到这里
+try_files $uri $uri/ =404;
+
+把=404删除掉，加/index.php?$query_string变成
+try_files $uri $uri/ /index.php?$query_string;
+
+-------------------
+
+跟着以下图片删除对应的#
+
+-------------------
+
+在保存之前我们可以检查多一次跟着以下的图片
+
+接下来我们进行保存
+按下Ctrl + X，按下y，再按下enter
+
+接下来我们需要把tutorial的文件link到sites-enabled的地方
+
+我们退出sites-available的文件夹，进入到sites-enabled的文件夹里
+cd ..
+cd sites-enabled
+
+因为default在一开始就link着sites-enabled的地方，我们需要先进行unlink
+unlink default
+
+这是检查文件夹，会显示是空的
+ls -l
+
+接下来连接文件(这一步是类似把两边的文件进行连接，其中一边进行更改，两边都会有变化)(注意路径)
+ln -s /etc/nginx/sites-available/tutorial /etc/nginx/sites-enabled/
+
+-------------------
+
+连接成功后，我们reload nginx的service
+sudo systemctl reload nginx
+如果没有出现任何东西就证明成功了
+
+现在我们使用IP地址去到浏览器打开会是Laravel的Error界面。这样就是成功了。
+
+-------------------
+
+接下来我们回到命令行里。
+我们退出Nginx的文件夹里。
+我们来到Laravel的文件夹。
+cd /
+cd home/azureuser/Laravel-Project-Modules/
+
+-------------------
+
+我们输入以下三行指令 (赋予权限给它们)
+sudo chown -R root:www-data storage bootstrap/cache
+chmod -R 775 storage
+chmod -R 775 bootstrap/cache
+
+然后我们使用Laravel指令清除cache
+php artisan config:cache
+
+-------------------
+
+这样我们的网站就创建完成了。

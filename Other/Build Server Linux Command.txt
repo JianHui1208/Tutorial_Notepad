@@ -1,0 +1,642 @@
+1  yum -y install httpd httpd-manual mod_ssl mod_perl mod_auth_mysql
+    2  systemctl start httpd
+    3  systemctl enable httpd
+    4  rpm -Uvh  http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+    5  yum -y install mysql-community-server
+    6  systemctl start mysqld
+    7  systemctl enable mysqld
+    8  systemctl daemon-reload
+    9  grep "password" /var/log/mysqld.log
+   10  2020-08-28T03:01:49.848762Z 1 [Note] A temporary password is generated for root@localhost: +47,uijcojcU
+   11  mysql_secure_installation
+   12  grep "password" /var/log/mysqld.log
+   13  sudo yum -y update
+   14  sudo yum -y install yum-utils
+   15  yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+   16  yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+   17  sudo yum-config-manager --enable remi-php74
+   18  sudo yum update
+   19  yum install -y php74 php74-php-devel  php74-php-fpm  php74-php-mbstring php74-php-memcache php74-php-memcached php74-php-redis  php74-php-mysqlnd  php74-php-pdo  php74-php-bcmath php74-php-xml php74-php-gd php74-php-gmp php74-php-igbinary php74-php-imagick   php74-php-mcrypt  php74-php-pdo_mysql php74-php-posix php74-php-simplexml  php74-php-opcache php74-php-xsl php74-php-xmlwriter php74-php-xmlreader php74-php-swoole php74-php-zip php74-php-phalcon  php74-php-yaml php74-php-yar php74-php-yaf php74-php-uuid
+   20  ————————————————
+   21  原文作者：yyy123456
+   22  转自链接：https://learnku.com/articles/51600
+   23  版权声明：著作权归作者所有。商业转载请联系作者获得授权，非商业转载请保留以上作者信息和原文链接。clear
+   24  clear
+   25  php -v
+   26  ls -l
+   27  cd /
+   28  ls -l
+   29  php -v
+   30  sudo yum-config-manager --enable remi-php74
+   31  php -v
+   32  yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+   33  yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+   34  sudo yum-config-manager --enable remi-php74
+   35  yum-config-manager --enable remi-php74
+   36  sudo yum install php php-cli
+   37  php -v
+   38  sudo yum install php php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json
+   39  php -v
+   40  yum install -y php74 php74-php-devel  php74-php-fpm  php74-php-mbstring php74-php-memcache php74-php-memcached php74-php-redis  php74-php-mysqlnd  php74-php-pdo  php74-php-bcmath php74-php-xml php74-php-gd php74-php-gmp php74-php-igbinary php74-php-imagick   php74-php-mcrypt  php74-php-pdo_mysql php74-php-posix php74-php-simplexml  php74-php-opcache php74-php-xsl php74-php-xmlwriter php74-php-xmlreader php74-php-swoole php74-php-zip php74-php-phalcon  php74-php-yaml php74-php-yar php74-php-yaf php74-php-uuid
+   41  echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+   42  systemctl restart httpd
+   43  mkdir -p /var/www/html/phpmyadmin
+   44  cd
+   45  wget https://files.phpmyadmin.net/phpMyAdmin/4.0.10.20/phpMyAdmin-4.0.10.20-all-languages.zip
+   46  yum install -y unzip
+   47  unzip phpMyAdmin-4.0.10.20-all-languages.zip
+   48  mv phpMyAdmin-4.0.10.20-all-languages/*  /var/www/html/phpmyadmin
+   49  sudo yum install php-cli php-zip wget unzip
+   50  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+   51  HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+   52  php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+   53  sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   54  composer
+   55  sudo yum install git
+   56  git --version
+   57  ls -l
+   58  git clone https://github.com/TechWorlds-Asia/Menuworlds_v2.git
+   59  ls -l
+   60  cd ./Menuworlds_v2
+   61  composer install
+   62  cp .env .env.example
+   63  cp .env.example .env
+   64  ls -l
+   65  ls -a
+   66  cat .env
+   67  sudo nano .env
+   68  vi .env
+   69  ls -l
+   70  cd Menuworlds_v2
+   71  sudo gedit .env
+   72  php artisan key:generate
+   73  vi .env
+   74  php artisan migrate --seed
+   75  ls -l
+   76  cd ./Menuworlds_v2
+   77  composer install
+   78  php artisan migrate:fresh --seed
+   79  sudo lsof -i -P -n
+   80  sudo lsof -i -P -n | grep LISTEN
+   81  netstat -tulpn | grep LISTEN
+   82  service iptables status
+   83  /sbin/iptables -I INPUT -p tcp --dport 1130 -j ACCEPT
+   84  netstat -tulpn | grep LISTEN
+   85  netstat -tulpn | grep LISTEN -l
+   86  /etc/init.d/iptables status
+   87  firewall-cmd --zone=public --list-ports
+   88  systemctl start firewalld
+   89  firewall-cmd --zone=public --list-ports
+   90  firewall-cmd --reload
+   91  systemctl status firewalld
+   92  firewall-cmd --zone=public --list-ports
+   93  firewall-cmd --zone=public --add-port=1135 --permanent
+   94  firewall-cmd --zone=public --add-port=1135/tcp --permanent
+   95  firewall-cmd --zone=public --list-ports
+   96  firewall-cmd --reload
+   97  firewall-cmd --zone=public --list-ports
+   98  netstat -tulpn | grep LISTEN
+   99  systemctl status firewalld
+  100  telnet ip 1135
+  101  telnet 47.254.241.186 1135
+  102  curl 47.254.241.186:1135
+  103  wget 47.254.241.186:1135
+  104  systemctl start firewalld
+  105  firewall-cmd --reload
+  106  curl 47.254.241.186:1135
+  107  firewall-cmd --zone=public --list-ports
+  108  firewall-cmd --set-default-zone=public
+  109  firewall-cmd --reload或firewall-cmd --complete-reload
+  110  firewall-cmd --zone=public --list-ports
+  111  ss -tnlp | grep :1135
+  112  sudo netstat -tnlp tcp | grep '\.1135'
+  113  ls -l
+  114  cd Menuworlds_v2
+  115  git pull
+  116  php artisan migrate:fresh --seed
+  117  composer update
+  118  php artisan -v
+  119  exit
+  120  history
+  121  ss -tnlp | grep :1135
+  122  sudo lsof -i -P -n | grep LISTEN
+  123  lsof -i -P -n | grep LISTEN
+  124  cat /etc/services
+  125  clear
+  126  sudo netstat -tulpn
+  127  sudo ss -tulpn | more
+  128  sudo ss -tulpn
+  129  sudo netstat -tulpn | more
+  130  nginx -V
+  131  iptables -L
+  132  clear
+  133  iptables -L
+  134  cd ./Menuworlds_v2/
+  135  git pull
+  136  git reset --hard
+  137  git pull
+  138  php artisan migrate
+  139  composer update
+  140  cd ..
+  141  sudo lsof -i -O -n
+  142  sudo lsof -i -P -n
+  143  sudo lsof -i -P -n | grep LISTEN
+  144  sudo ss -tulw
+  145  sudo ss -tulw -p
+  146  cd /usr/share/nginx/html
+  147  ls
+  148  cd /home/
+  149  ls
+  150  cd www/
+  151  ls
+  152  cd ..
+  153  cd usr/
+  154  ls
+  155  cd ..
+  156  ls
+  157  pwd
+  158  cd root/
+  159  ls
+  160  cd Menuworlds_v2/
+  161  ls
+  162  cd public/
+  163  pwd
+  164  ping mnws.cc
+  165  ipconfig
+  166  ifconfig
+  167  cd /var/www/
+  168  ls
+  169  cd html/
+  170  ;s
+  171  ls
+  172  cd ..
+  173  ls
+  174  cd ..
+  175  ls
+  176  cat /etc/nginx/nginx.conf.default
+  177  ls
+  178  cd www/
+  179  ls
+  180  touch index.html
+  181  vim index.html
+  182  nginx -V
+  183  nginx status
+  184  service status nginx
+  185  service nginx status
+  186  service nginx restart
+  187  service nginx start
+  188  systemctl status nginx.service
+  189  systemctl status nginx.service -l
+  190  nginx -V
+  191  cd /etc/nginx/nginx.conf
+  192  cat /etc/nginx/nginx.conf
+  193  nano /etc/nginx/nginx.conf
+  194  vim /etc/nginx/nginx.conf
+  195  service nginx start
+  196  systemctl status nginx.service -l
+  197  nginx -V
+  198  vim /etc/nginx/nginx.conf
+  199  service nginx start
+  200  systemctl status nginx.service -l
+  201  cd /etc/init.d/
+  202  ls
+  203  /etc/init.d/nginx restart
+  204  sudo fuser -k 80/tcp
+  205  service nginx start
+  206  systemctl status nginx.service -l
+  207  vim /etc/nginx/nginx.conf
+  208  service nginx restart
+  209  iptables -L
+  210  ifconfig -a
+  211  cat /sys/module/ipv6/parameters/disable
+  212  sysctl -a 2>/dev/null | grep disable_ipv6
+  213  ip -6 addr
+  214  netstat -tunlp | grep -iE 'udp6|tcp6'
+  215  systemctl status nginx.service -l
+  216   nano /etc/ssl/cert.pem
+  217  vim /etc/ssl/cert.pem
+  218  nginv -V
+  219  nging -V
+  220  nginx -V
+  221  vim /etc/nginx/nginx.conf
+  222  systemctl status nginx.service -l
+  223  vim /etc/nginx/nginx.conf
+  224  vim /etc/nginx/default.d/
+  225  cd /etc/nginx/default.d/
+  226  ls
+  227  cd ..
+  228  ls
+  229  cat nginx.conf
+  230  vim nginx.conf
+  231  service nginx restart
+  232  systemctl status nginx.service
+  233  vim nginx.conf
+  234  service nginx restart
+  235  systemctl status nginx.service
+  236  vim nginx.conf
+  237  php --version
+  238  cat nginx.conf
+  239  vim nginx.conf
+  240  service nginx restart
+  241  systemctl status nginx.service
+  242  nginx -V
+  243  cat /var/log/nginx/access.log
+  244  cat /var/log/nginx/error.log
+  245  cd ~
+  246  cp Menuworlds_v2/ /home/www/Menuworlds_v2
+  247  cp -r Menuworlds_v2/ /home/www/Menuworlds_v2
+  248  users
+  249  vim nginx.conf
+  250  nginx -V
+  251  vim /etc/nginx/nginx.conf
+  252  service nginx restart
+  253  sudo ufw allow 'Nginx Full'
+  254  cat /etc/nginx/sites-enabled/default
+  255  cd /etc/nginx/sites-enabled/default
+  256  cat /var/log/nginx/access.log
+  257  systemctl status nginx.service
+  258  cd /etc/nginx/
+  259  ls
+  260  ls conf.d/
+  261  ls
+  262  ls conf.d/
+  263  cat nginx.conf.default
+  264  fstat -u www | fgrep "*:"
+  265  lsof -i -n | fgrep nginx
+  266  tail -20 /var/log/nginx/error.log
+  267  sudo lsof -iTCP -sTCP:LISTEN -P
+  268  cd /home/www/
+  269  ls
+  270  cd Menuworlds_v2/
+  271  ls
+  272  ls -la
+  273  iptables -L
+  274  iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+  275  iptables -A INPUT -p tcp --dport 442 -j ACCEPT
+  276  iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+  277  iptables -L
+  278  service nginx restart
+  279  vim /etc/nginx/nginx.conf
+  280  ls -la
+  281  service nginx restart
+  282  systemctl status nginx.service
+  283  vim /etc/nginx/nginx.conf
+  284  service nginx restart
+  285  vim /etc/nginx/nginx.conf
+  286  service nginx restart
+  287  systemctl status httpd
+  288  systemctl start httpd
+  289  systemctl status httpd.service
+  290  vim /etc/apache2/apache2.conf
+  291  cd /etc/httpd/
+  292  ls
+  293  cd conf
+  294  ls
+  295  vim httpd.conf
+  296  systemctl start httpd.service
+  297  systemctl status httpd.service
+  298  apachectl configtest
+  299  systemctl start httpd.service
+  300  service httpd start
+  301  grep -ri listen /etc/apache2
+  302  netstat -ltnp | grep :80
+  303  sudo kill -9 32317
+  304  service httpd start
+  305  systemctl start httpd.service
+  306  systemctl status httpd.service
+  307  systemctl status nginx
+  308  systemctl start nginx
+  309  systemctl status nginx.service
+  310  sudo fuser -k 80/tcp
+  311  systemctl start httpd.service
+  312  systemctl start nginx
+  313  vim httpd.conf
+  314  systemctl restart httpd.service
+  315  systemctl start nginx
+  316  systemctl status nginx.service
+  317  cat /etc/nginx/nginx.conf
+  318  vim /etc/nginx/nginx.conf
+  319  systemctl restart nginx
+  320  systemctl status nginx.service
+  321  sudo firewall-cmd --permanent --zone=public --add-service=http
+  322  sudo firewall-cmd --permanent --zone=public --add-service=https
+  323  sudo firewall-cmd --reload
+  324  vim /etc/nginx/nginx.conf
+  325  systemctl restart nginx
+  326  vim /etc/nginx/nginx.conf
+  327  systemctl restart nginx
+  328  systemctl stop nginx
+  329  cd /etc/httpd/conf/httpd.conf
+  330  vim /etc/httpd/conf/httpd.conf
+  331  systemctl restart httpd.service
+  332  systemctl stop httpd.service
+  333  systemctl start nginx
+  334  systemctl stop nginx
+  335  systemctl start httpd.service
+  336  vim httpd.conf
+  337  systemctl restart httpd.service
+  338  systemctl status httpd.service1
+  339  vim httpd.conf
+  340  systemctl restart httpd.service
+  341  cd /home/www/
+  342  cd Menuworlds_v2/
+  343  ls
+  344  cd public/
+  345  ls
+  346  ls -la
+  347  cat .htaccess
+  348  cd /etc/httpd/conf/httpd.conf
+  349  cd /etc/httpd/conf/
+  350  vim httpd.conf
+  351  cp -r /home/www/Menuworlds_v2/ /var/www/html/Menuworlds_v2
+  352  vim httpd.conf
+  353  chmod -r apache:apache /var/www/html/Menuworlds_v2
+  354  chown -r apache:apache /var/www/html/Menuworlds_v2
+  355  chown -R apache:apache /var/www/html/Menuworlds_v2
+  356  ls /var/www/html/Menuworlds_v2 -la
+  357  vim httpd.conf
+  358  systemctl restart httpd.service
+  359  vim httpd.conf
+  360  cd /var/www/html/Menuworlds_v2/public
+  361  cd ..
+  362  cat .env
+  363  vim .env
+  364  cd /etc/httpd/
+  365  ls
+  366  cd conf
+  367  ;s
+  368  ls
+  369  cd ..
+  370  ls
+  371  cd conf.d/
+  372  ls
+  373  cd ..
+  374  mkdir sites-available
+  375  cd sites-available/
+  376  vim laravel_project.conf
+  377  sudo a2dissite 000-default.conf
+  378  sudo a2ensite laravel_project
+  379  sudo apt-get update
+  380  sudo yum update
+  381  sudo yum libapache2-mod-wsgi python-dev
+  382  sudo yum install libapache2-mod-wsgi python-dev
+  383  cd ..
+  384  cd conf
+  385  vim httpd.conf
+  386  systemctl restart httpd.service
+  387  vim httpd.conf
+  388  history
+  389  cd /etc/httpd/
+  390  ls
+  391  cd sites-available/
+  392  ls
+  393  cat laravel_project.conf
+  394  cd /alidata/server/nginx/conf/vhosts/
+  395  cd /
+  396  cd /alidata/server/nginx/conf/vhosts/
+  397  ls
+  398  ls -l
+  399  cd srv
+  400  ls -l
+  401  cd ..
+  402  cd var
+  403  ls -l
+  404  cd db
+  405  ls -l
+  406  cd nginx
+  407  nginx -v
+  408  cd ..
+  409  sudo yum install yum-utils
+  410  ls -l
+  411  cd etc
+  412  ls -l
+  413  cd yum.repos.d/
+  414  ls -l
+  415  nano nginx.repo
+  416  vim nginx.repo
+  417  ls -l
+  418  nano nginx.repo
+  419  sudo update-alternatives --config editor
+  420  echo $EDITOR
+  421  nano nginx.repo
+  422  vim nginx.repo
+  423  ls -l
+  424  vim nginx.repo
+  425  ls -l
+  426  vim nginx.repo
+  427  cat nginx.repo
+  428  sudo yum install nginx
+  429  nginx
+  430  nginx -v
+  431  cd ..
+  432  ls -l
+  433  cd ~
+  434  ls -l
+  435  cd /
+  436  cd /alidata/server/nginx/conf/vhosts/
+  437  cd /nginx/conf/vhosts/
+  438  /usr/local/webserver/nginx/sbin/nginx -v
+  439  ls -l
+  440  cd tmp
+  441  ls -l
+  442  cd ..
+  443  cd var
+  444  ls -l
+  445  cd nis
+  446  ls -l
+  447  cd ..
+  448  cd etc
+  449  cd ..
+  450  cd etc
+  451  ls -l
+  452  cd ..
+  453  cd ~
+  454  ls -l
+  455  cd /
+  456  ls -l
+  457  cd bin
+  458  ls -l
+  459  clear
+  460  yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
+  461  cd /usr/local/src/
+  462   wget http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.gz
+  463  tar zxvf pcre-8.35.tar.gz
+  464  cd pcre-8.35
+  465  ./configure
+  466  make && make install
+  467  pcre-config --version
+  468  cd /usr/local/src/
+  469   wget http://nginx.org/download/nginx-1.6.2.tar.gz
+  470  tar zxvf nginx-1.6.2.tar.gz
+  471  cd nginx-1.6.2
+  472  ./configure --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.35
+  473  make
+  474  make install
+  475  /usr/local/webserver/nginx/sbin/nginx -v
+  476  /usr/sbin/groupadd www
+  477   /usr/sbin/useradd -g www www
+  478  cat /usr/local/webserver/nginx/conf/nginx.conf
+  479  /usr/local/webserver/nginx/sbin/nginx
+  480  /usr/local/webserver/nginx/sbin/nginx -t
+  481  /usr/local/webserver/nginx/sbin/nginx -s reopen
+  482  cat /usr/local/webserver/nginx/logs/nginx.pid
+  483  cd /usr/local/webserver/nginx/logs
+  484  ls -l
+  485  nano nginx.pid
+  486  cat nginx.pid
+  487  vim nginx.pid
+  488  /usr/local/webserver/nginx/sbin/nginx -s reload
+  489  vim /usr/local/webserver/nginx/conf/nginx.conf
+  490  histry
+  491  cd /alidata/server/nginx/conf/vhosts/
+  492  history
+  493  cd ..
+  494  ls -l
+  495  cd usr
+  496  ls -l
+  497  cd ..
+  498  nginx --help
+  499  nginx -help
+  500  cat nginx.pid
+  501  cd /usr/local/webserver/nginx/logs
+  502  ls -l
+  503  cat nginx.pid
+  504  vim nginx.pid
+  505  history
+  506  vim /usr/local/webserver/nginx/conf/nginx.conf
+  507  sudo systemctl stop nginx
+  508  sudo systemctl status nginx
+  509  sudo systemctl status nginx.service
+  510  cd ..
+  511  sudo systemctl reload nginx
+  512  sudo killall apache2
+  513  sudo killall apache
+  514  sudo nano /var/log/nginx/error.log
+  515  vim /var/log/nginx/error.log
+  516  cd /usr/local/webserver/nginx/logs
+  517  vim nginx.pid
+  518  cat /usr/local/webserver/nginx/conf/nginx.conf
+  519  vim /usr/local/webserver/nginx/conf/nginx.conf
+  520  vim nginx.pid
+  521  sudo systemctl reload nginx
+  522  sudo systemctl status nginx.service
+  523  vim /usr/local/webserver/nginx/conf/nginx.conf
+  524  sudo systemctl reload nginx
+  525  sudo systemctl status nginx.service
+  526  sudo ss -tulw
+  527  sudo ss -tulwn
+  528  sudo ss -tulwn | grep LISTEN
+  529  hisory
+  530  history
+  531  clear
+  532  cd ..
+  533  cd ~
+  534  ls -l
+  535  ls -a
+  536  cd /
+  537  la -a
+  538  ls -a
+  539  ls -l
+  540  cd lost+found
+  541  ls -l
+  542  history
+  543  clear
+  544  cd ..
+  545  sudo systemctl status nginx.service
+  546  sudo ss -tulwn
+  547  cd ..
+  548  ls -l
+  549  cd ~
+  550  ls -l
+  551  cd Menuworlds_v2/
+  552  git pull
+  553  php artisan migrate
+  554  php artisan migrate:fresh --seed
+  555  cd ..
+  556  ls -l
+  557  cd ./Menuworlds_v2
+  558  pwd
+  559  vim testing file
+  560  cd ./
+  561  cd ..
+  562  cd /
+  563  ls -l
+  564  users
+  565  cd `
+  566  cd ~
+  567  users
+  568  ls
+  569  cd /
+  570  cls -l
+  571  ls -l
+  572  cd root
+  573  pwd
+  574  cd ..
+  575  pwd
+  576  apache2
+  577  apache -v
+  578  apache2 -v
+  579  cd ~
+  580  apache2 -v
+  581  apache -v
+  582  systemctl restart httpd.service
+  583  sudo service httpd start
+  584  apachectl configtest
+  585  systemctl status httpd.service
+  586  sudo apachectl configtest
+  587  sudo tail -30 /var/log/apache2/error.log
+  588  cd `
+  589  cd /
+  590  sudo tail -30 /var/log/apache2/error.log
+  591  cd var
+  592  cd log
+  593  ls -l
+  594  cd httpd
+  595  ls -l
+  596  cat error_log-20210905
+  597  cat ssl_error_log-20210905
+  598  cat ssl_error_log
+  599  cat error_log
+  600  sudo setenforce 0
+  601  sudo systemctl start httpd.service
+  602  systemctl status httpd.service
+  603  cd ..
+  604  ls -l
+  605  cd home
+  606  ls -l
+  607  cd www
+  608  ls -l
+  609  cd Menuworlds_v2/public
+  610  ls -l
+  611  ls -a
+  612  vim .htaccess
+  613  sudo lsof -i -P -n | grep LISTEN
+  614  cd ..
+  615  cd
+  616  sudo lsof -i -P -n | grep LISTEN
+  617  cd /
+  618  sudo lsof -i -P -n | grep LISTEN
+  619  sudo ss -tulwn
+  620  sudo ss -tulw
+  621  histroy
+  622  history
+  623  ls -l
+  624  cd /
+  625  ls -l
+  626  cd home
+  627  ls -l
+  123  vi /etc/httpd/conf/httpd.conf
+  628  cd ww
+  629  cd www
+  630  ls -l
+  631  ls- l
+  632  ls -l
+  633  history
+  634  sudo systemctl start httpd.service
+  635  systemctl status httpd.service
+  636  systemctl status httpd.service -l
+  637  sudo systemctl start httpd.service
+  638  journalctl -xe
+  639  sudo systemctl start httpd.service
+  640  systemctl status httpd.service -l
+  641  history

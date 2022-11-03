@@ -1,0 +1,277 @@
+    1  sudo apt update
+    2  sudo apt install nginx
+    3  sudo ufw app list
+    4  sudo ufw allow 'Nginx HTTPS'
+    5  sudo ufw status
+    6  sudo ufw allow 'Nginx HTTP'
+    7  sudo ufw status
+    8  sudo systemctl status nginx
+    9  sudo ufw allow 'Nginx Full'
+   10  sudo ufw status
+   11  sudo apt update
+   12  sudo apt install git
+   13  git --version
+   14  sudo apt update
+   15  sudo apt install mysql-server
+   16  sudo apt-get update
+   17  clear
+   18  sudo apt -y install php7.4
+   19  sudo systemctl status nginx
+   20  php -v
+   21  sudo apt-get install -y php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath
+   22  sudo apt update
+   23  sudo apt install php-cli unzip
+   24  clear
+   25  cd ~
+   26  curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+   27  HASH=`curl -sS https://composer.github.io/installer.sig`
+   28  echo $HASH
+   29  php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+   30  sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   31  composer
+   32  composer --version
+   33  cd /home/azureuser
+   34  ls -l
+   35  ls -a
+   36  mysql -v
+   37  sudo mysql_secure_installation
+   38  sudo mysql
+   39  mysql -u root -p\
+   40  mysql -u root -p
+   41  sudo mysql
+   42  sudo mysql_secure_installation
+   43  sudo mysql
+   44* mysql -u root -
+   45  systemctl status mysql.service
+   46  sudo mysqladmin -p -u sammy version
+   47  ls
+   48  ls -a
+   49  git clone https://github.com/JianHui1208/Library_Management.git
+   50  cd Library_Management/
+   51  composer install
+   52  cp .env.example .env
+   53  php artisan key:generate
+   54  nano .env
+   55  mysql
+   56  clear
+   57  cd ..
+   58  mysql
+   59  cd Library_Management/
+   60  nano .env
+   61  clear
+   62  php artisan migrate --seed
+   63  cat .env
+   64  history
+   65  clear
+   66  mysql -u root
+   67  nano .env
+   68  mysql -u aaa_user -p
+   69  CAT .ENV
+   70  cat .env
+   71  mysql -u aaa_user -p
+   72  cat .env
+   73  php artisan migrate --seed
+   74  cd /var/www/html
+   75  ls -l
+   76  cd ..
+   77  ls -l
+   78  ls -a
+   79  cd html
+   80  cd ~
+   81  cd /
+   82  cd home/azureuser/Library_Management/public/
+   83  cd /
+   84  in -s /home/azureuser/Library_Management/public/* ~/var/www/html/
+   85  in -s /home/azureuser/Library_Management/public/* ~/var/www/html
+   86  ln -s /home/azureuser/Library_Management/public/* ~/var/www/html
+   87  cd ~
+   88  ls -l
+   89  ls -a
+   90  cd /
+   91  cd var/www/html
+   92  cd ~
+   93  ln -s /home/azureuser/Library_Management/public/* /var/www/html
+   94  cd /var/www/html
+   95  ls -l
+   96  mv index.html /var/www
+   97  mv index.nginx-debian.html /var/www
+   98  cd ..
+   99  ls -l
+  100  cd /
+  101  cd etc/nginx/
+  102  ls -l
+  103  cat nginx.conf
+  104  cd sites-available/
+  105  ls -l
+  106  ls -a
+  107  cat default
+  108  nano default
+  109  cd /
+  110  sudo systemctl stop nginx
+  111  sudo systemctl start nginx
+  112  sudo systemctl status nginx
+  113  cd etc/nginx/
+  114  cd sites-available/
+  115  nano default
+  116  cat default
+  117  cd ..
+  118  ls -l
+  119  cd sites-available/
+  120  nano default
+  121  sudo systemctl reload nginx
+  122  cd /
+  123  sudo systemctl reload nginx
+  124  sudo systemctl stop nginx
+  125  sudo systemctl start nginx
+  126  systemctl status nginx.service
+  127  cd etc/nginx/
+  128  ls -l
+  129  cd sites-
+  130  cd sites-enabled/
+  131  ls -l
+  132  ls -a
+  133  cat default
+  134  cd ..
+  135  cd sites-available/
+  136  nano default
+  137  sudo systemctl start nginx
+  138  nano default
+  139  sudo systemctl start nginx
+  140  sudo systemctl status nginx
+  141  nano default
+  142  sudo systemctl status nginx
+  143  sudo systemctl start nginx
+  144  sudo systemctl status nginx
+  145  cat default
+  146  nano default
+  147  sudo systemctl reload nginx
+  148  sudo systemctl status nginx
+  149  nano default
+  150  sudo systemctl reload nginx
+  151  sudo systemctl status nginx
+  152  cd /
+  153  ls -l
+  154  cd home/azureuser/Library_Management/
+  155  php artisan config:cache
+  156  cat .env
+  157  sudo systemctl reload nginx
+  158  cd public/
+  159  ls- l
+  160  ls -a
+  161  cat .htaccess
+  162  nano .htaccess
+  163  ls -aclear
+  164  clear
+  165  cd ..
+  166  php artisan config:cache
+  167  sudo systemctl reload nginx
+  168  ps aux|grep nginx
+  169  brew list
+  170  cd /
+  171  cd etc/nginx/
+  172  ls -l
+  173  cd sites-available/
+  174  nano default
+  175  sudo systemctl reload nginx
+  176  sudo apt install php-fpm
+  177  sudo systemctl reload nginx
+  178  sudo chown -R $USER:www-data storage
+  179  chmod -R 775 storage
+  180  ps aux|grep nginx|grep -v grep
+  181  sudo chown -R root:www-data storage bootstrap/cache
+  182  cd /
+  183  cd home/azureuser/Library_Management/
+  184  sudo chown -R root:www-data storage bootstrap/cache
+  185  php artisan config:cache
+  186  chmod -R 775 storage
+  187  chmod -R 775 bootstrap/cache
+  188  php artisan config:cache
+  189  history
+
+----------------------------------------------------------------------------------------------
+
+    1  sudo apt update
+    2  sudo utw status
+    3  sudo apt install nginx
+    4  sudo ufw app list
+    5  sudo ufw status
+    6  quite
+    7  quit
+    8  exit
+    9  sudo apt update
+   10  sudo apt install git
+   11  git --version
+   12  sudo apt install mysql-server
+   13  sudo apt-get update
+   14  sudo apt -y install php7.4
+   15  sudo apt-get install -y php7.4-cli php7.4-json php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php-cli unzip
+   16  sudo systemctl status nginx
+   17  curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+   18  HASH=`curl -sS https://composer.github.io/installer.sig`
+   19  php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+   20  sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   21  composer --version
+   22  sudo apt install php-fpm
+   23  sudo systemctl reload nginx
+   24  sudo systemctl status nginx
+   25  mysql -v
+   26  ls -l
+   27  ls -a
+   28  cd /.
+   29  ls -l
+   30  cd home/azureuser/
+   31  git clone https://github.com/JianHui1208/Laravel-Project-Modules.git
+   32  cd Laravel-Project-Modules/
+   33  composer install
+   34  cp .env.example .env
+   35  nano .env
+   36  php artisan key:genetaye
+   37  php artisan key:generate
+   38  mysql
+   39  php artisan migrate --seed
+   40  mysql -u user1 -p
+   41  nano .env
+   42  php artisan migrate --seed
+   43  cd /
+   44  cd etc/nginx/sites-available/
+   45  ls -l
+   46  cp default base_project
+   47  ls -l
+   48  nano base_project
+   49  cd ..
+   50  ls -l
+   51  cd sites-enabled/
+   52  ls -l
+   53  cat default
+   54  ln -s /etc/nginx/sites-available/base_project /etc/nginx/sites-enabled/default
+   55  mv default nginx
+   56  ls -l
+   57  ls
+   58  cd ..
+   59  ls -l
+   60  cd sites-enabled/
+   61  ls
+   62  cat de
+   63  cat nginx
+   64  mv nginx default
+   65  ls -l
+   66  unlink default
+   67  ls- l
+   68  ls -l
+   69  ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+   70  ls -l
+   71  cat default
+   72  unlink default
+   73  ln -s /etc/nginx/sites-available/base_project /etc/nginx/sites-enabled/
+   74  ls -l
+   75  cd /
+   76  sudo systemctl reload nginx
+   77  sudo systemctl status nginx
+   78  cd home/azureuser/Laravel-Project-Modules/
+   79  sudo chown -R root:www-data storage bootstrap/cache
+   80  php artisan config:cache
+   81  chmod -R 775 storage
+   82  chmod -R 775 bootstrap/cache
+   83  php artisan config:cache
+   84  cd /
+   85  history

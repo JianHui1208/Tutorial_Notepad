@@ -1,0 +1,67 @@
+1.npx create-react-app <fileName>
+2.create-react-app <fileName> - install: react, react-dom, and react-scripts
+3.cd <fileName>
+4.npm start
+
+npm run build
+npm --version
+npm test
+npm run eject
+npm install styled-components
+npm i react react-dom react-router@2.0.1 --save --> install react router
+
+
+<---------------->
+1.mkdir <folderName>
+2.cd <folderName>
+3.mkdir client & server
+<-----client------>
+4.cd client
+5.npx create-react-app .
+6.npm start
+11.npm i axios - install xios to manage api request
+
+<-----server------>
+7.cd server
+8.npm init
+9.npm install express body-parser mysql
+10.npm install nodemon
+12.npm install cors (server) - allow encounter error(body-parser)/allow req from front->back
+
+
+<---------------->
+server/package.json
+>Debug
+"scripts":{
+   "start":"node index.js",
+   "devStart":"...",
+}
+-> to run, (terminal)npm run <start>/<devStart>
+<---------------->
+
+<---------------->
+server/index.js
+app.get('/<nameUrl>',(req,res)=>{
+   res.send("Hello World"); //->print("Hello World") in web html 
+})
+<---------------->
+
+<---Database Connection--->
+1.xampp-create db & table
+2.server/index.js - init connection
+<------------------------->
+
+<------------------------->
+src/App.js
+const <varName> = () =>{Axios.(func)}
+//req.body.<var>: const[var1]
+<------------------------->
+
+<---Extension--->
+1.ES7 React/Redux....React-Native Snippets
+<--------------->
+
+
+<---Question?--->
+1.const['var1','var2'] = useState('') -->src/App.js
+2.db.query()

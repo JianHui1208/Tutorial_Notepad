@@ -1,0 +1,76 @@
+First Push you file to github
+git init
+git config --global user.name JianHui1208
+git config --global user.email jianhuiwilliam80@gmail.com
+git add .
+git status
+git commit -m "Add File"
+Go github create new repositories
+git remote
+git remote add origin 'Your Github Clone with Https'
+git remote
+git push -u origin master
+------------------------------------------------------
+After your file already at the github, then you modified your file
+(if you at the master)
+git add .
+git commit -m "What did you just do"
+git push
+------------------------------------------------------
+如果你要开另外一个branch
+git checkout -b <branch name>
+然后你就可以开始做新的东西 做好了 再重新push上去
+git add .
+git commit -m "What did you just do"
+git push origin <branch name>
+------------------------------------------------------
+update和merge
+看你要跟什么branch合
+这里假设
+（folder2要跟master合）
+所以就要换去master的branch
+git checkout master
+git pull 
+git merge folder2
+------------------------------------------------------
+到这里了就换去github的页面 去master的branch
+上面有一个compare & pull request
+第一个要你打的是新commit的(要放 但是不改也行)
+下面是comment
+然后就按create pull request
+然后继续按merge pull request
+一样也是commit
+按confirm merge
+然后就完成了
+------------------------------------------------------
+假设现在是更改那个code 不是加新的file
+假设我现在在folder2的branch里面改code
+一样 改了之后要push上去一次
+git add .
+git commit -m "What did you just do"
+git push origin folder2
+push了之后 要合在一起
+一样也是folder2合master
+git checkout master
+git pull
+git merge folder2
+git push
+code就会出现在master的file里面了(你更改的file里面)
+------------------------------------------------------
+如果要delete branch的话
+git branch -d <branch name>
+------------------------------------------------------
+Create Git Tag
+
+检查有没有tag
+git tag
+
+创建新的tag
+git tag -a v1.2.1 -m "Comment"
+
+把新的git tag push上去github
+git push origin v1.2.1
+
+delete tag
+git tag -d v1.0 (local)
+git push --delete origin tagname (online)

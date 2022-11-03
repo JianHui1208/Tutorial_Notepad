@@ -1,0 +1,18 @@
+netstat -tulpn | grep LISTEN
+检查Port
+
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+Create Port
+
+touch file name
+(create file)
+
+base file name
+执行.sh 文件
+https://docs.fileformat.com/programming/sh/#:~:text=run%20SH%20file%3F-,What%20is%20a%20SH%20file%3F,programs%20and%20other%20such%20tasks.
+
+sudo fuser -k 80/tcp
+Kill All 80 Port
+
+
+
