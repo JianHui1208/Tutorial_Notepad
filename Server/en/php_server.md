@@ -55,11 +55,11 @@ SSH-I ~ path/VM-machine-tutorial _ key.pemazureuser@4.196.248.194 (followed by y
 
 Path Example = C:/Users/user/Desktop/vm-server.pem
 
-Follow the location of your pem file < br/>
+Follow the location of your pem file <br/>
 The first time you call, this will appear. Write down yes <br/>
 ![alt text](https://github.com/JianHui1208/Tutorial_Notepad/blob/main/IMG/9.png?raw=true)<br />
 
-Success will bring you to this interface < br/>
+Success will bring you to this interface <br/>
 ![alt text](https://github.com/JianHui1208/Tutorial_Notepad/blob/main/IMG/Screenshot%202022-11-02%20032134.png?raw=true)<br />
 Ok, start building the server now
 
@@ -72,23 +72,23 @@ Let's learn a few Linux instructions before starting the build.
 Check folders
 
 ```
-ls -l Viewing the files in the current folder does not include hidden files, and the files started by. git, .env, etc.
+ls -l (Viewing the files in the current folder does not include hidden files, and the files started by. git, .env, etc.)
 ```
 
 ```
-ls -a view the files in the current folder, including hidden files, and the starting files.
+ls -a (view the files in the current folder, including hidden files, and the starting files.)
 ```
 
 Copy file
 
 ```
-cp file name The target name of the copy
+cp <file name> <The target name of the copy>
 ```
 
 delete a file
 
 ```
-rm file name
+rm <file name>
 ```
 
 Clear the current instruction interface.
@@ -100,13 +100,13 @@ clear
 edit file
 
 ```
-nano file name
+nano <file name>
 ```
 
 View files
 
 ```
-cat file name
+cat <file name>
 ```
 
 ---
@@ -310,7 +310,7 @@ CREATE USER 'user1'@'%' IDENTIFIED BY 'aaa1234zzz.'; (create user)
 ```
 
 ```
-GRANT ALL PRIVILEGES ON _._ TO 'user1'@'%'; (give user permission)
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%'; (give user permission)
 ```
 
 User1 is db \_ username just set in. env < br/>

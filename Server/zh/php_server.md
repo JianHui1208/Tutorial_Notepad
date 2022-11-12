@@ -310,7 +310,7 @@ CREATE USER 'user1'@'%' IDENTIFIED BY 'aaa1234zzz.'; (创建用户)
 ```
 
 ```
-GRANT ALL PRIVILEGES ON _._ TO 'user1'@'%'; (给予用户权限)
+GRANT ALL PRIVILEGES ON *.* TO 'user1'@'%'; (给予用户权限)
 ```
 
 user1 是刚刚设定在.env 的 DB_USERNAME<br />

@@ -1,0 +1,14 @@
+docker rm -f <the-container-id>
+删除镜像
+
+docker ps
+镜像list
+
+docker build -t <project name> . 
+build project
+
+docker run -dp 3000:3000 <project name>
+创建镜像（Port可自行设置）
+
+https://labs.play-with-docker.com/
+4小时时间 上online server
