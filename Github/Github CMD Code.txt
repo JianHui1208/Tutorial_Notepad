@@ -1,6 +1,6 @@
 First Push you file to github
 git init
-git config --global user.name JianHui1208
+git config --global user.name JianHui1208 (change username)
 git config --global user.email jianhuiwilliam80@gmail.com
 git add .
 git status
@@ -74,3 +74,17 @@ git push origin v1.2.1
 delete tag
 git tag -d v1.0 (local)
 git push --delete origin tagname (online)
+------------------------------------------------------
+.gitignore 忽略掉一些文件，不会被推上去GitHub
+
+# Ignore compiled files
+*.class
+*.o
+
+# Ignore build directories
+/build/
+/dist/
+
+# Ignore configuration files
+config.ini
+secrets.txt

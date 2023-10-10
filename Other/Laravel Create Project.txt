@@ -1,6 +1,10 @@
 Frist Time
 composer global require laravel/installer
 composer create-project --prefer-dist laravel/laravel 'project name'
+
+Create Specific Laravel Version
+composer create-project laravel/laravel=4.1.27 your-project-name --prefer-dist
+
 cd 'project name'
 composer require laravel/ui
 php artisan ui vue --auth
